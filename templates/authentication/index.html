@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Index</title>
+  </head>
+  <body>
+  
+    {% for message in messages %}
+    <div>
+        <strong>Message:</strong> {{ message }}
+    </div>
+    {% endfor %}
+    
+    <h3>Welcome to Vulnerable Login app</h3>
+    
+    {% if user.is_authenticated %}
+        <!-- FLAW 3: -->
+        <h3>Hello {{ user.first_name|safe }}</h3>
+        <h4>You're successfully logged in.</h4>
+        <button type="submit"><a href="/signout">Sign Out</a></button>
+    {% else %}
+        <button type="submit"><a href="/signup">Register</a></button>
+        <button type="submit"><a href="/signin">Sign In</a></button>
+    {% endif %}
+
+  </body>
+</html>
